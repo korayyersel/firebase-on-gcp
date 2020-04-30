@@ -9,5 +9,5 @@ handlers:
 
 env_variables:
   # Replace with your Firebase project ID.
-  FIREBASE_PROJECT_ID: 'firebasedemo-qperior'
+  FIREBASE_PROJECT_ID: '[project-id]'
   GAE_USE_SOCKETS_HTTPLIB : 'true'

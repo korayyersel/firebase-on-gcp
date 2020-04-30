@@ -17,7 +17,7 @@ $(function(){
   // deploying the application to a live production environment, change to
   // https://backend-dot-<PROJECT_ID>.appspot.com as specified in the
   // backend's app.yaml file.
-  var backendHostUrl = 'https://backend-dot-firebasedemo-qperior.appspot.com';// TODO change this
+  var backendHostUrl = 'https://backend-dot-[project-id].appspot.com';// TODO change this
 
   // [START gae_python_firenotes_config]
   // Obtain the following from the "Add Firebase to your web app" dialogue
@@ -74,11 +74,7 @@ $(function(){
     var uiConfig = {
       'signInSuccessUrl': '/',
       'signInOptions': [
-        // Leave the lines as is for the providers you want to offer your users.
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-        firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-        firebase.auth.GithubAuthProvider.PROVIDER_ID,
+        // Leave the lines as is for the providers you want to offer your users.        
         firebase.auth.EmailAuthProvider.PROVIDER_ID
       ],
       // Terms of service url
@@ -88,6 +84,26 @@ $(function(){
     var ui = new firebaseui.auth.AuthUI(firebase.auth());
     ui.start('#firebaseui-auth-container', uiConfig);
   }
+
+  function configureSAML() {
+    var provider = new firebase.auth.SAMLAuthProvider('saml.sap-ias');
+    firebase.auth().signInWithPopup(provider)
+    .then((result) => {
+      // TODO update user info on the page
+      result.additionalUserInfo.profile;
+      
+      // User is signed in.
+      // Identity provider data available in result.additionalUserInfo.profile,
+      // or from the user's ID token obtained from result.user.getIdToken()
+      // as an object in the firebase.sign_in_attributes custom claim
+      // This is also available from result.user.getIdTokenResult()
+      // idTokenResult.claims.firebase.sign_in_attributes.
+    })
+    .catch((error) => {
+      // Handle error.
+    });
+  }
+
   // [END gae_python_firebase_login]
 
   // [START gae_python_fetch_notes]
@@ -148,5 +164,6 @@ $(function(){
 
   configureFirebaseLogin();
   configureFirebaseLoginWidget();
+  //configureSAML();
 
 });
