@@ -24,8 +24,8 @@ $(function(){
   // Initialize Firebase
   // TODO change this
   var config = {
-    apiKey: "AIzaSyAj0Y3tT1_Eiz03kS31fH5li2d3pHZnXHM",
-    authDomain: "fir-demo-qperior.firebaseapp.com",
+    apiKey: "",
+    authDomain: "",
   };
   // [END gae_python_firenotes_config]
 
